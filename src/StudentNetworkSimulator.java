@@ -151,9 +151,8 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
             toLayer5(1, packet.getPayload());
 
-            System.out.println("send ACK" + packet.getSeqnum() + "\n");
-            int checksum = computeChecksum(bSeqNum, packet.getSeqnum(), packet.getPayload());
-            toLayer3(1, new Packet(bSeqNum, packet.getSeqnum(), checksum));
+            sendACK(packet);
+
             bSeqNum = computeSeqNum(bSeqNum);
         }
     }
@@ -175,6 +174,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         String data = " data: " + packet.getPayload();
         System.out.println("sent pkt" + aSeqNum + data);
         System.out.println("start timer\n");
+    }
+
+    private void sendACK(Packet packet){
+        System.out.println("send ACK" + packet.getSeqnum() + "\n");
+        int checksum = computeChecksum(bSeqNum, packet.getSeqnum(), packet.getPayload());
+        toLayer3(1, new Packet(bSeqNum, packet.getSeqnum(), checksum));
+
     }
 
     private boolean notCorrupt(Packet packet) {
