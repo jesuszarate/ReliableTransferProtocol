@@ -105,10 +105,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         send(aPacket);
     }
 
-    // This routine will be called whenever a packet sent from the B-side 
-    // (i.e. as a result of a toLayer3() being done by a B-side procedure)
-    // arrives at the A-side.  "packet" is the (possibly corrupted) packet
-    // sent from the B-side.
+    /**
+     * This routine will be called whenever a packet sent from the B-side
+     * (i.e. as a result of a toLayer3() being done by a B-side procedure)
+     * arrives at the A-side.  "packet" is the (possibly corrupted) packet
+     * sent from the B-side.
+     * @param packet
+     */
     protected void aInput(Packet packet) {
         // If the checksum is good to go then that means it's not corrupt
 
@@ -166,7 +169,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     }
 
     /********Helper Methods***************/
-    private void send(Packet packet){
+    private void send(Packet packet) {
         toLayer3(0, packet);
 
         startTimer(0, 10);
@@ -176,7 +179,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         System.out.println("start timer\n");
     }
 
-    private void sendACK(Packet packet){
+    private void sendACK(Packet packet) {
         System.out.println("send ACK" + packet.getSeqnum() + "\n");
         int checksum = computeChecksum(bSeqNum, packet.getSeqnum(), packet.getPayload());
         toLayer3(1, new Packet(bSeqNum, packet.getSeqnum(), checksum));
