@@ -92,10 +92,15 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         super(numMessages, loss, corrupt, avgDelay, trace, seed);
     }
 
-    // This routine will be called whenever the upper layer at the sender [A]
-    // has a message to send.  It is the job of your protocol to insure that
-    // the data in such a message is delivered in-order, and correctly, to
-    // the receiving upper layer.
+
+    /**
+     * This routine will be called whenever the upper layer at the sender [A]
+     * has a message to send.  It is the job of your protocol to insure that
+     * the data in such a message is delivered in-order, and correctly, to
+     * the receiving upper layer.
+     *
+     * @param message
+     */
     protected void aOutput(Message message) {
 
         aSeqNum = computeSeqNum(aSeqNum);
@@ -130,7 +135,8 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     // This routine will be called when A's timer expires (thus generating a 
     // timer interrupt). You'll probably want to use this routine to control 
     // the retransmission of packets. See startTimer() and stopTimer(), above,
-    // for how the timer is started and stopped. 
+    // for how the timer is started and stopped.
+
     protected void aTimerInterrupt() {
         System.out.println("Timed out........" + aPacket.getPayload());
         send(aPacket);
