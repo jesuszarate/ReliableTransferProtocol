@@ -44,8 +44,8 @@
       <file leaf-file-name="StudentNetworkSimulator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/StudentNetworkSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+            <state relative-caret-position="294">
+              <caret line="138" column="14" lean-forward="true" selection-start-line="138" selection-start-column="14" selection-end-line="138" selection-end-column="14" />
               <folding>
                 <element signature="method#StudentNetworkSimulator#0;class#StudentNetworkSimulator#0" expanded="false" />
                 <element signature="method#aInput#0;class#StudentNetworkSimulator#0" expanded="false" />
@@ -782,7 +782,7 @@
       <option name="presentableId" value="Default" />
       <updated>1489629946184</updated>
       <workItem from="1489629947566" duration="23679000" />
-      <workItem from="1488885183615" duration="792000" />
+      <workItem from="1488885183615" duration="950000" />
     </task>
     <task id="LOCAL-00001" summary="Added method for sending an ack">
       <created>1488885300140</created>
@@ -791,11 +791,25 @@
       <option name="project" value="LOCAL" />
       <updated>1488885300140</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added javadoc">
+      <created>1489059096003</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1489059096003</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added javadoc">
+      <created>1489145563375</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1489145563375</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24471000" />
+    <option name="totallyTimeSpent" value="24629000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -840,32 +854,33 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added method for sending an ack" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added method for sending an ack" />
+    <MESSAGE value="Added javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added javadoc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/StudentNetworkSimulator.java</url>
-          <line>122</line>
+          <line>127</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/StudentNetworkSimulator.java</url>
-          <line>152</line>
+          <line>159</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/StudentNetworkSimulator.java</url>
-          <line>158</line>
+          <line>165</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/StudentNetworkSimulator.java</url>
-          <line>102</line>
+          <line>107</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
@@ -967,8 +982,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentNetworkSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="112" column="0" lean-forward="false" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+        <state relative-caret-position="294">
+          <caret line="138" column="14" lean-forward="true" selection-start-line="138" selection-start-column="14" selection-end-line="138" selection-end-column="14" />
           <folding>
             <element signature="method#StudentNetworkSimulator#0;class#StudentNetworkSimulator#0" expanded="false" />
             <element signature="method#aInput#0;class#StudentNetworkSimulator#0" expanded="false" />

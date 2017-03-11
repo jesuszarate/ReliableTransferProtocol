@@ -132,11 +132,12 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         }
     }
 
-    // This routine will be called when A's timer expires (thus generating a 
-    // timer interrupt). You'll probably want to use this routine to control 
-    // the retransmission of packets. See startTimer() and stopTimer(), above,
-    // for how the timer is started and stopped.
-
+    /**
+     * This routine will be called when A's timer expires (thus generating a
+     * timer interrupt). You'll probably want to use this routine to control
+     * the retransmission of packets. See startTimer() and stopTimer(), above,
+     * for how the timer is started and stopped.
+     */
     protected void aTimerInterrupt() {
         System.out.println("Timed out........" + aPacket.getPayload());
         send(aPacket);
