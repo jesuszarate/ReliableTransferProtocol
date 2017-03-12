@@ -82,12 +82,22 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
     private int bSeqNum;
 
-    // Add any necessary class variables here.  Remember, you cannot use
-    // these variables to send messages error free!  They can only hold
-    // state information for A or B.
-    // Also add any necessary methods (e.g. checksum of a String)
 
-    // This is the constructor.  Don't touch!
+    /**
+     * Add any necessary class variables here.  Remember, you cannot use
+     * these variables to send messages error free!  They can only hold
+     * state information for A or B.
+     * Also add any necessary methods (e.g. checksum of a String)
+     *
+     * This is the constructor.  Don't touch!
+     *
+     * @param numMessages
+     * @param loss
+     * @param corrupt
+     * @param avgDelay
+     * @param trace
+     * @param seed
+     */
     public StudentNetworkSimulator(int numMessages, double loss, double corrupt, double avgDelay, int trace, long seed) {
         super(numMessages, loss, corrupt, avgDelay, trace, seed);
     }
@@ -143,7 +153,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         send(aPacket);
     }
 
-
     /**
      * This routine will be called once, before any of your other A-side
      * routines are called. It can be used to do any required
@@ -175,8 +184,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             bSeqNum = computeSeqNum(bSeqNum);
         }
     }
-
-
 
     /**
      * This routine will be called once, before any of your other B-side
