@@ -176,10 +176,14 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         }
     }
 
-    // This routine will be called once, before any of your other B-side 
-    // routines are called. It can be used to do any required
-    // initialization (e.g. of member variables you add to control the state
-    // of entity B).
+
+
+    /**
+     * This routine will be called once, before any of your other B-side
+     * routines are called. It can be used to do any required
+     * initialization (e.g. of member variables you add to control the state
+     * of entity B).
+     */
     protected void bInit() {
         bSeqNum = 0;
     }
