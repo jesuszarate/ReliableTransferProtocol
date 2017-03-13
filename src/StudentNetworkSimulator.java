@@ -143,18 +143,27 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         send(aPacket);
     }
 
-    // This routine will be called once, before any of your other A-side 
-    // routines are called. It can be used to do any required
-    // initialization (e.g. of member variables you add to control the state
-    // of entity A).
+
+    /**
+     * This routine will be called once, before any of your other A-side
+     * routines are called. It can be used to do any required
+     * initialization (e.g. of member variables you add to control the state
+     * of entity A).
+     */
     protected void aInit() {
         aSeqNum = 1;
     }
 
-    // This routine will be called whenever a packet sent from the B-side 
-    // (i.e. as a result of a toLayer3() being done by an A-side procedure)
-    // arrives at the B-side.  "packet" is the (possibly corrupted) packet
-    // sent from the A-side.
+
+
+    /**
+     * This routine will be called whenever a packet sent from the B-side
+     * (i.e. as a result of a toLayer3() being done by an A-side procedure)
+     * arrives at the B-side.  "packet" is the (possibly corrupted) packet
+     * sent from the A-side.
+     *
+     * @param packet
+     */
     protected void bInput(Packet packet) {
         System.out.println("rcv pkt" + packet.getSeqnum());
         if (notCorrupt(packet) && packet.getSeqnum() == bSeqNum) {
