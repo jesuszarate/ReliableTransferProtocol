@@ -163,8 +163,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         aSeqNum = 1;
     }
 
-
-
     /**
      * This routine will be called whenever a packet sent from the B-side
      * (i.e. as a result of a toLayer3() being done by an A-side procedure)
@@ -195,7 +193,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         bSeqNum = 0;
     }
 
-    /********Helper Methods***************/
+    /* *******Helper Methods***************/
+
+    /**
+     * Send the given packet from A to B
+     *
+     * @param packet Packet to be sent over
+     */
     private void send(Packet packet) {
         toLayer3(0, packet);
 
@@ -206,6 +210,11 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         System.out.println("start timer\n");
     }
 
+    /**
+     * Send an acknowledgement for the given packet
+     *
+     * @param packet packet to acknowledge
+     */
     private void sendACK(Packet packet) {
         System.out.println("send ACK" + packet.getSeqnum() + "\n");
         int checksum = computeChecksum(bSeqNum, packet.getSeqnum(), packet.getPayload());
@@ -213,16 +222,38 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
     }
 
+    /**
+     * Checks to make sure the packet has not been corrupted
+     *
+     * @param packet Packet to check if it's corrupt
+     * @return true if the packet is not corrupt
+     */
     private boolean notCorrupt(Packet packet) {
         int checksum = computeChecksum(packet.getSeqnum(), packet.getAcknum(), packet.getPayload());
         return checksum == packet.getChecksum();
     }
 
+    /**
+     * Makes a packet with the given parameters
+     *
+     * @param seqNum sequence number
+     * @param ack ACK number
+     * @param payload Payload
+     * @return New packet
+     */
     private Packet makePacket(int seqNum, int ack, String payload) {
         int checkSum = computeChecksum(seqNum, ack, payload);
         return new Packet(seqNum, ack, checkSum, payload);
     }
 
+    /**
+     * Computes the checksum based on the given parameters
+     *
+     * @param seqNum sequnce number
+     * @param ack ACK number
+     * @param payload Payload
+     * @return The Checksum
+     */
     private int computeChecksum(int seqNum, int ack, String payload) {
         int charSum = 0;
         for (int i = 0; i < payload.length(); i++) {
@@ -231,6 +262,12 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         return ack + seqNum + charSum;
     }
 
+    /**
+     * Alternates the sequence number
+     *
+     * @param seqNum Current sequence number
+     * @return Next sequence number
+     */
     private int computeSeqNum(int seqNum) {
         return seqNum == 1 ? 0 : 1;
     }
