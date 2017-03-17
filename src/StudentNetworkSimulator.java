@@ -81,7 +81,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     private Packet aPacket;
 
     private int bSeqNum;
-
+    private Packet bPacket;
 
     /**
      * Add any necessary class variables here.  Remember, you cannot use
@@ -90,13 +90,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * Also add any necessary methods (e.g. checksum of a String)
      *
      * This is the constructor.  Don't touch!
-     *
-     * @param numMessages
-     * @param loss
-     * @param corrupt
-     * @param avgDelay
-     * @param trace
-     * @param seed
      */
     public StudentNetworkSimulator(int numMessages, double loss, double corrupt, double avgDelay, int trace, long seed) {
         super(numMessages, loss, corrupt, avgDelay, trace, seed);
@@ -113,9 +106,9 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      */
     protected void aOutput(Message message) {
 
-        aSeqNum = computeSeqNum(aSeqNum);
+        //aSeqNum = computeSeqNum(aSeqNum);
 
-        aPacket = makePacket(aSeqNum, 0, message.getData());
+        aPacket = makePacket(aSeqNum, A, message.getData());
 
         send(aPacket);
     }
@@ -128,17 +121,22 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * @param packet
      */
     protected void aInput(Packet packet) {
-        // If the checksum is good to go then that means it's not corrupt
-
         System.out.println("rcv ACK" + packet.getAcknum());
         Packet newPacket = new Packet(packet);
         newPacket.setPayload(aPacket.getPayload());
         newPacket.setChecksum(packet.getChecksum());
 
-        if (notCorrupt(newPacket) && packet.getAcknum() == aSeqNum) {
-            // Do nothing yet here but stop timer later on
+        if (!corrupt(newPacket) && packet.getAcknum() == aSeqNum) {
             System.out.println("Acknowledged packet" + packet.getAcknum());
-            stopTimer(0);
+            System.out.println("Stopped timer");
+            aSeqNum = computeSeqNum(aSeqNum);
+            stopTimer(A);
+        }
+        else if (corrupt(newPacket)){
+            System.out.println("Corrupted ACK");
+        }
+        else {
+            System.out.println("Wrong ACK");
         }
     }
 
@@ -160,7 +158,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * of entity A).
      */
     protected void aInit() {
-        aSeqNum = 1;
+        aSeqNum = 0;
     }
 
     /**
@@ -173,13 +171,24 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      */
     protected void bInput(Packet packet) {
         System.out.println("rcv pkt" + packet.getSeqnum());
-        if (notCorrupt(packet) && packet.getSeqnum() == bSeqNum) {
+        if (!corrupt(packet) && packet.getSeqnum() == bSeqNum) {
 
-            toLayer5(1, packet.getPayload());
+            bPacket = packet;
+
+            toLayer5(B, packet.getPayload());
 
             sendACK(packet);
 
             bSeqNum = computeSeqNum(bSeqNum);
+        }
+        else if (corrupt(packet) || packet.getSeqnum() != bSeqNum){
+
+            if(corrupt(packet))
+                System.out.println("Received a corrupt packet from A");
+            if(packet.getSeqnum() != bSeqNum)
+                System.out.println("Received wrong sequence number from A: " + packet.getSeqnum() + " instead of " + bSeqNum);
+
+            sendACK(bPacket);
         }
     }
 
@@ -201,13 +210,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * @param packet Packet to be sent over
      */
     private void send(Packet packet) {
-        toLayer3(0, packet);
+        toLayer3(A, packet);
 
-        startTimer(0, 10);
+        startTimer(A, 15);
 
         String data = " data: " + packet.getPayload();
         System.out.println("sent pkt" + aSeqNum + data);
-        System.out.println("start timer\n");
+        System.out.println("started timer\n");
     }
 
     /**
@@ -218,7 +227,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     private void sendACK(Packet packet) {
         System.out.println("send ACK" + packet.getSeqnum() + "\n");
         int checksum = computeChecksum(bSeqNum, packet.getSeqnum(), packet.getPayload());
-        toLayer3(1, new Packet(bSeqNum, packet.getSeqnum(), checksum));
+        toLayer3(B, new Packet(bSeqNum, packet.getSeqnum(), checksum, "Dummy Payload"));
 
     }
 
@@ -228,9 +237,9 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * @param packet Packet to check if it's corrupt
      * @return true if the packet is not corrupt
      */
-    private boolean notCorrupt(Packet packet) {
+    private boolean corrupt(Packet packet) {
         int checksum = computeChecksum(packet.getSeqnum(), packet.getAcknum(), packet.getPayload());
-        return checksum == packet.getChecksum();
+        return checksum != packet.getChecksum();
     }
 
     /**
