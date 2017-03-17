@@ -97,7 +97,9 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     private int retransmissionsNum = 0;
     private int ACKNum = 0;
     private int corruptedPacketNum = 0;
-    private double avgRTT = 0;
+    private double totalRTT = 0;
+    private double startTime = 0;
+    private int RTT = 0;
     /* ********Stats********* */
 
     /**
@@ -131,6 +133,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             aPacket = makePacket(aSeqNum, A, message.getData());
             send(aPacket);
             inTransit = true;
+            startTime = getTime();
             transmittedNum++;
         }else {
             System.out.println("A: message - " + message.getData() + "was dropped");
@@ -148,6 +151,8 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * @param packet
      */
     protected void aInput(Packet packet) {
+        updateRTT();
+
         System.out.println("A: rcv ACK" + packet.getAcknum());
         Packet newPacket = makePacketForChecksum(packet);
 
@@ -161,9 +166,15 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
         } else if (corrupt(newPacket)) {
             System.out.println("Corrupted ACK");
+            corruptedPacketNum++;
         } else {
             System.out.println("Wrong ACK");
         }
+    }
+
+    private void updateRTT() {
+        totalRTT += getTime() - startTime;
+        RTT++;
     }
 
     /**
@@ -175,6 +186,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     protected void aTimerInterrupt() {
         System.out.println("Timed out........" + aPacket.getPayload());
         send(aPacket);
+        startTime = getTime();
         retransmissionsNum++;
     }
 
@@ -220,6 +232,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             }
         }
         sendACK(bPacket);
+        transmittedNum++;
     }
 
     /**
@@ -318,13 +331,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         return seqNum == 1 ? 0 : 1;
     }
 
-    private void printStats() {
 
-        System.out.println("nCorrupt " + nLost);
+    private void printStats() {
+        //System.out.println("nCorrupt " + nLost);
         System.out.println("transmitted: " + transmittedNum);
         System.out.println("retransmissions: " + retransmissionsNum);
         System.out.println("ACKs: " + ACKNum);
         System.out.println("corrupted Packets: " + corruptedPacketNum);
-        System.out.println("avgRTT: " + avgRTT + "\n");
+        System.out.println("avgRTT: " + (RTT != 0 ? totalRTT/RTT : 0) + "\n");
     }
 }

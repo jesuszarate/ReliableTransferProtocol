@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f6497f1-5431-4b36-862b-06b7587f3f80" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/NetworkSimulator.class" afterPath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/NetworkSimulator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/StudentNetworkSimulator.class" afterPath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/StudentNetworkSimulator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NetworkSimulator.java" afterPath="$PROJECT_DIR$/src/NetworkSimulator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StudentNetworkSimulator.java" afterPath="$PROJECT_DIR$/src/StudentNetworkSimulator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -49,13 +49,13 @@
       <file leaf-file-name="StudentNetworkSimulator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/StudentNetworkSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="147" column="20" lean-forward="true" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
+            <state relative-caret-position="334">
+              <caret line="335" column="10" lean-forward="false" selection-start-line="335" selection-start-column="10" selection-end-line="335" selection-end-column="10" />
               <folding>
-                <element signature="e#8366#8367#0" expanded="true" />
-                <element signature="e#8393#8394#0" expanded="true" />
-                <element signature="e#10911#10912#0" expanded="true" />
-                <element signature="e#10953#10954#0" expanded="true" />
+                <element signature="e#8671#8672#0" expanded="true" />
+                <element signature="e#8698#8699#0" expanded="true" />
+                <element signature="e#11216#11217#0" expanded="true" />
+                <element signature="e#11258#11259#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -799,7 +799,7 @@
       <option name="presentableId" value="Default" />
       <updated>1489629946184</updated>
       <workItem from="1489629947566" duration="23679000" />
-      <workItem from="1488885183615" duration="27403000" />
+      <workItem from="1488885183615" duration="31487000" />
     </task>
     <task id="LOCAL-00001" summary="Added method for sending an ack">
       <created>1488885300140</created>
@@ -864,11 +864,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489710067859</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Transmitting correctly. Still need the stats">
+      <created>1489729346307</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1489729346307</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51082000" />
+    <option name="totallyTimeSpent" value="55166000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -912,18 +919,20 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Added method for sending an ack" />
     <MESSAGE value="Added javadoc" />
     <MESSAGE value="Added javadoc to all the helper methods" />
     <MESSAGE value="Able to catch corrupted packets, and lost packets and recover." />
-    <option name="LAST_COMMIT_MESSAGE" value="Able to catch corrupted packets, and lost packets and recover." />
+    <MESSAGE value="Transmitting correctly. Still need the stats" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transmitting correctly. Still need the stats" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/StudentNetworkSimulator.java</url>
-          <line>114</line>
+          <line>116</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
@@ -963,10 +972,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#8366#8367#0" expanded="true" />
-            <element signature="e#8393#8394#0" expanded="true" />
-            <element signature="e#10911#10912#0" expanded="true" />
-            <element signature="e#10953#10954#0" expanded="true" />
+            <element signature="e#8671#8672#0" expanded="true" />
+            <element signature="e#8698#8699#0" expanded="true" />
+            <element signature="e#11216#11217#0" expanded="true" />
+            <element signature="e#11258#11259#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1024,13 +1033,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StudentNetworkSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="147" column="20" lean-forward="true" selection-start-line="147" selection-start-column="20" selection-end-line="147" selection-end-column="20" />
+        <state relative-caret-position="334">
+          <caret line="335" column="10" lean-forward="false" selection-start-line="335" selection-start-column="10" selection-end-line="335" selection-end-column="10" />
           <folding>
-            <element signature="e#8366#8367#0" expanded="true" />
-            <element signature="e#8393#8394#0" expanded="true" />
-            <element signature="e#10911#10912#0" expanded="true" />
-            <element signature="e#10953#10954#0" expanded="true" />
+            <element signature="e#8671#8672#0" expanded="true" />
+            <element signature="e#8698#8699#0" expanded="true" />
+            <element signature="e#11216#11217#0" expanded="true" />
+            <element signature="e#11258#11259#0" expanded="true" />
           </folding>
         </state>
       </provider>
