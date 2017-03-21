@@ -28,7 +28,7 @@ public abstract class NetworkSimulator
 
     private int nSim;
     private int nToLayer3;
-    protected int nLost;
+    private int nLost;
     private int nCorrupt;
     private double time;
     
@@ -281,6 +281,7 @@ public abstract class NetworkSimulator
             if (traceLevel > 0)
             {
                 System.out.println("toLayer3: packet being corrupted");
+                //System.out.println("toLayer3 payload: " + packet.getPayload());
             }
             
             double x = rand.nextDouble();

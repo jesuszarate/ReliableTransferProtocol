@@ -4,6 +4,7 @@
  * Jesus Zarate
  */
 public class StudentNetworkSimulator extends NetworkSimulator {
+    private static final String DUMMY_PAYLOAD = "Dummy Payload";
     /*
      * Predefined Constants (static member variables):
      *
@@ -89,6 +90,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     private Packet bPacket;
 
     private boolean inTransit;
+    private boolean ackIgnored;
 
     private int TIME = 130;
 
@@ -96,6 +98,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     private int transmittedNum = 0;
     private int retransmissionsNum = 0;
     private int ACKNum = 0;
+    private int packetLossNum = 0;
     private int corruptedPacketNum = 0;
     private double totalRTT = 0;
     private double startTime = 0;
@@ -158,17 +161,18 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
         // Check to make sure that the Acknowledgement is for the correct packet
         if (!corrupt(newPacket) && packet.getAcknum() == aSeqNum) {
-            System.out.println("Packet" + packet.getAcknum() + " was acknowledged");
-            System.out.println("Stopped timer");
+            System.out.println("A: Packet" + packet.getAcknum() + " was acknowledged");
+            System.out.println("A: Stopped timer");
             aSeqNum = computeSeqNum(aSeqNum);
             inTransit = false;
             stopTimer(A);
 
         } else if (corrupt(newPacket)) {
-            System.out.println("Corrupted ACK");
+            System.out.println("A: received a corrupted ACK");
             corruptedPacketNum++;
         } else {
-            System.out.println("Wrong ACK");
+            System.out.println("A: received wrong ACK");
+            ackIgnored = true;
         }
     }
 
@@ -184,7 +188,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * for how the timer is started and stopped.
      */
     protected void aTimerInterrupt() {
-        System.out.println("Timed out........" + aPacket.getPayload());
+        // Packet loss occured
+        if(!ackIgnored){
+            packetLossNum++;
+            ackIgnored = false;
+        }
+
+        System.out.println("A: Timed out........" + aPacket.getPayload());
         send(aPacket);
         startTime = getTime();
         retransmissionsNum++;
@@ -199,6 +209,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     protected void aInit() {
         aSeqNum = 0;
         inTransit = false;
+        ackIgnored = false;
     }
 
     /**
@@ -223,12 +234,12 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         } else if (corrupt(packet) || packet.getSeqnum() != bSeqNum) {
 
             if (corrupt(packet)) {
-                System.out.println("Detected a corrupt packet from A");
+                System.out.println("B: Detected a corrupt packet from A");
                 corruptedPacketNum++;
             }
 
             if (packet.getSeqnum() != bSeqNum) {
-                System.out.println("Detected duplicate A: " + packet.getSeqnum() + " instead of " + bSeqNum);
+                System.out.println("B: Detected duplicate A: " + packet.getSeqnum() + " instead of " + bSeqNum);
             }
         }
         sendACK(bPacket);
@@ -243,6 +254,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      */
     protected void bInit() {
         bSeqNum = 0;
+        bPacket = new Packet(0, 0, 0, DUMMY_PAYLOAD);
     }
 
 
@@ -260,18 +272,18 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
         String data = " data: " + packet.getPayload();
         System.out.println("A: sent pkt" + packet.getSeqnum() + data);
-        System.out.println("started timer\n");
+        System.out.println("A: started timer\n");
     }
 
     /**
-     * Send an acknowledgement for the given packet
+     * For B: Send an acknowledgement for the given packet
      *
      * @param packet packet to acknowledge
      */
     private void sendACK(Packet packet) {
-        System.out.println("send ACK" + packet.getSeqnum() + "\n");
+        System.out.println("B: send ACK" + packet.getSeqnum() + "\n");
         int checksum = computeChecksum(bSeqNum, packet.getSeqnum(), packet.getPayload());
-        toLayer3(B, new Packet(bSeqNum, packet.getSeqnum(), checksum, "Dummy Payload"));
+        toLayer3(B, new Packet(bSeqNum, packet.getSeqnum(), checksum, DUMMY_PAYLOAD));
     }
 
     /**
@@ -298,6 +310,14 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         return new Packet(seqNum, ack, checkSum, payload);
     }
 
+    /**
+     * This packet is specifically just for the checksum
+     * Adds the current packet data of the packet to a new packet along
+     * with the checksum
+     *
+     * @param packet Packet returned from user
+     * @return new packet with the same payload as the passed in packet
+     */
     private Packet makePacketForChecksum(Packet packet) {
         Packet newPacket = new Packet(packet);
         newPacket.setPayload(aPacket.getPayload());
@@ -333,11 +353,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
 
     private void printStats() {
+        System.out.println("\nSTATS");
         //System.out.println("nCorrupt " + nLost);
-        System.out.println("transmitted: " + transmittedNum);
-        System.out.println("retransmissions: " + retransmissionsNum);
+        System.out.println("Transmitted: " + transmittedNum);
+        System.out.println("Retransmissions: " + retransmissionsNum);
         System.out.println("ACKs: " + ACKNum);
-        System.out.println("corrupted Packets: " + corruptedPacketNum);
-        System.out.println("avgRTT: " + (RTT != 0 ? totalRTT/RTT : 0) + "\n");
+        System.out.println("Packets lost: " + packetLossNum);
+        System.out.println("Corrupted Packets: " + corruptedPacketNum);
+        System.out.println("AvgRTT: " + (RTT != 0 ? totalRTT/RTT : 0) + "\n");
     }
 }
