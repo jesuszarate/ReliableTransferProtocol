@@ -7,8 +7,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/NetworkSimulator.class" afterPath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/NetworkSimulator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/StudentNetworkSimulator.class" afterPath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/StudentNetworkSimulator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NetworkSimulator.java" afterPath="$PROJECT_DIR$/src/NetworkSimulator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/StudentNetworkSimulator.java" afterPath="$PROJECT_DIR$/src/StudentNetworkSimulator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -804,7 +802,7 @@
       <option name="presentableId" value="Default" />
       <updated>1489629946184</updated>
       <workItem from="1489629947566" duration="23679000" />
-      <workItem from="1488885183615" duration="41547000" />
+      <workItem from="1488885183615" duration="41762000" />
     </task>
     <task id="LOCAL-00001" summary="Added method for sending an ack">
       <created>1488885300140</created>
@@ -883,11 +881,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489735480876</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed issue where an exception was thrown if the first packet was lost, the bPacket would be null and therefore it would not have a payload and break.">
+      <created>1490075234191</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1490075234191</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65226000" />
+    <option name="totallyTimeSpent" value="65441000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -938,7 +943,8 @@
     <MESSAGE value="Able to catch corrupted packets, and lost packets and recover." />
     <MESSAGE value="Transmitting correctly. Still need the stats" />
     <MESSAGE value="Stats are up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Stats are up" />
+    <MESSAGE value="Fixed issue where an exception was thrown if the first packet was lost, the bPacket would be null and therefore it would not have a payload and break." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed issue where an exception was thrown if the first packet was lost, the bPacket would be null and therefore it would not have a payload and break." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
