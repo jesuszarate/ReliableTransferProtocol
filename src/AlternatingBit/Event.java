@@ -1,3 +1,5 @@
+package AlternatingBit;
+
 public class Event
 {
     private double time;

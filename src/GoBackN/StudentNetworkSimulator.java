@@ -1,3 +1,5 @@
+package GoBackN;
+
 /**
  * Written by
  *
@@ -8,8 +10,8 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     /*
      * Predefined Constants (static member variables):
      *
-     *   int MAXDATASIZE : the maximum size of the Message data and
-     *                     Packet payload
+     *   int MAXDATASIZE : the maximum size of the AlternatingBit.Message data and
+     *                     AlternatingBit.Packet payload
      *
      *   int A           : a predefined integer that represents entity A
      *   int B           : a predefined integer that represents entity B
@@ -23,7 +25,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      *       Starts a timer running at "entity" [A or B], which will expire in
      *       "increment" time units, causing the interrupt handler to be
      *       called.  You should only call this with A.
-     *  void toLayer3(int callingEntity, Packet p)
+     *  void toLayer3(int callingEntity, AlternatingBit.Packet p)
      *       Puts the packet "p" into the network from "callingEntity" [A or B]
      *  void toLayer5(int entity, String dataSent)
      *       Passes "dataSent" up to layer 5 from "entity" [A or B]
@@ -37,49 +39,49 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      *
      *  Predefined Classes:
      *
-     *  Message: Used to encapsulate a message coming from layer 5
+     *  AlternatingBit.Message: Used to encapsulate a message coming from layer 5
      *    Constructor:
-     *      Message(String inputData):
-     *          creates a new Message containing "inputData"
+     *      AlternatingBit.Message(String inputData):
+     *          creates a new AlternatingBit.Message containing "inputData"
      *    Methods:
      *      boolean setData(String inputData):
-     *          sets an existing Message's data to "inputData"
+     *          sets an existing AlternatingBit.Message's data to "inputData"
      *          returns true on success, false otherwise
      *      String getData():
      *          returns the data contained in the message
-     *  Packet: Used to encapsulate a packet
+     *  AlternatingBit.Packet: Used to encapsulate a packet
      *    Constructors:
-     *      Packet (Packet p):
-     *          creates a new Packet that is a copy of "p"
-     *      Packet (int seq, int ack, int check, String newPayload)
-     *          creates a new Packet with a sequence field of "seq", an
+     *      AlternatingBit.Packet (AlternatingBit.Packet p):
+     *          creates a new AlternatingBit.Packet that is a copy of "p"
+     *      AlternatingBit.Packet (int seq, int ack, int check, String newPayload)
+     *          creates a new AlternatingBit.Packet with a sequence field of "seq", an
      *          ack field of "ack", a checksum field of "check", and a
      *          payload of "newPayload"
-     *      Packet (int seq, int ack, int check)
-     *          create a new Packet with a sequence field of "seq", an
+     *      AlternatingBit.Packet (int seq, int ack, int check)
+     *          create a new AlternatingBit.Packet with a sequence field of "seq", an
      *          ack field of "ack", a checksum field of "check", and
      *          an empty payload
      *    Methods:
      *      boolean setSeqnum(int n)
-     *          sets the Packet's sequence field to "n"
+     *          sets the AlternatingBit.Packet's sequence field to "n"
      *          returns true on success, false otherwise
      *      boolean setAcknum(int n)
-     *          sets the Packet's ack field to "n"
+     *          sets the AlternatingBit.Packet's ack field to "n"
      *          returns true on success, false otherwise
      *      boolean setChecksum(int n)
-     *          sets the Packet's checksum to "n"
+     *          sets the AlternatingBit.Packet's checksum to "n"
      *          returns true on success, false otherwise
      *      boolean setPayload(String newPayload)
-     *          sets the Packet's payload to "newPayload"
+     *          sets the AlternatingBit.Packet's payload to "newPayload"
      *          returns true on success, false otherwise
      *      int getSeqnum()
-     *          returns the contents of the Packet's sequence field
+     *          returns the contents of the AlternatingBit.Packet's sequence field
      *      int getAcknum()
-     *          returns the contents of the Packet's ack field
+     *          returns the contents of the AlternatingBit.Packet's ack field
      *      int getChecksum()
-     *          returns the checksum of the Packet
+     *          returns the checksum of the AlternatingBit.Packet
      *      int getPayload()
-     *          returns the Packet's payload
+     *          returns the AlternatingBit.Packet's payload
      *
      */
 
@@ -161,7 +163,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
         // Check to make sure that the Acknowledgement is for the correct packet
         if (!corrupt(newPacket) && packet.getAcknum() == aSeqNum) {
-            System.out.println("A: Packet" + packet.getAcknum() + " was acknowledged");
+            System.out.println("A: AlternatingBit.Packet" + packet.getAcknum() + " was acknowledged");
             System.out.println("A: Stopped timer");
             aSeqNum = computeSeqNum(aSeqNum);
             inTransit = false;
@@ -188,7 +190,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * for how the timer is started and stopped.
      */
     protected void aTimerInterrupt() {
-        // Packet loss occured
+        // AlternatingBit.Packet loss occured
         if(!ackIgnored){
             packetLossNum++;
             ackIgnored = false;
@@ -263,7 +265,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     /**
      * Send the given packet from A to B
      *
-     * @param packet Packet to be sent over
+     * @param packet AlternatingBit.Packet to be sent over
      */
     private void send(Packet packet) {
         toLayer3(A, packet);
@@ -289,7 +291,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     /**
      * Checks to make sure the packet has not been corrupted
      *
-     * @param packet Packet to check if it's corrupt
+     * @param packet AlternatingBit.Packet to check if it's corrupt
      * @return true if the packet is not corrupt
      */
     private boolean corrupt(Packet packet) {
@@ -315,7 +317,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * Adds the current packet data of the packet to a new packet along
      * with the checksum
      *
-     * @param packet Packet returned from user
+     * @param packet AlternatingBit.Packet returned from user
      * @return new packet with the same payload as the passed in packet
      */
     private Packet makePacketForChecksum(Packet packet) {

@@ -1,3 +1,5 @@
+package AlternatingBit;
+
 import java.io.*;
 
 public class Project

@@ -1,11 +1,11 @@
+package AlternatingBit;
+
 import java.util.Random;
-import java.util.Vector;
-import java.util.Enumeration;
 
 public abstract class NetworkSimulator
 {
-    // This constant controls the maximum size of the buffer in a Message
-    // and in a Packet
+    // This constant controls the maximum size of the buffer in a AlternatingBit.Message
+    // and in a AlternatingBit.Packet
     public static final int MAXDATASIZE = 20;
     
     // These constants are possible events
@@ -129,7 +129,7 @@ public abstract class NetworkSimulator
                     }
                     else
                     {
-                        System.out.println("INTERNAL PANIC: Packet has " +
+                        System.out.println("INTERNAL PANIC: AlternatingBit.Packet has " +
                                            "arrived for unknown entity");
                     }
                     
