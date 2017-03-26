@@ -1,5 +1,7 @@
 package GoBackN;
 
+import java.util.ArrayList;
+
 /**
  * Written by
  *
@@ -125,6 +127,11 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         printStats();
     }
 
+    private Packet[] sndpkt;
+    private int nextSeqNum;
+    private int base;
+    private int N;
+
     /**
      * This routine will be called whenever the upper layer at the sender [A]
      * has a message to send.  It is the job of your protocol to insure that
@@ -134,18 +141,29 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * @param message
      */
     protected void aOutput(Message message) {
-        if (!inTransit){
-            aPacket = makePacket(aSeqNum, A, message.getData());
-            send(aPacket);
-            inTransit = true;
-            startTime = getTime();
-            transmittedNum++;
-        }else {
-            System.out.println("A: message - " + message.getData() + "was dropped");
+
+        if(nextSeqNum < base + N){
+            sndpkt[nextSeqNum] = makePacket(nextSeqNum, A, message.getData());
+            send(sndpkt[nextSeqNum]);
+
+            if(base == nextSeqNum)
+                startTimer(A, TIME);
+            nextSeqNum++;
         }
+        else {
+            //refuse_data(message.getData());
+        }
+
+//        if (!inTransit){
+//            aPacket = makePacket(aSeqNum, A, message.getData());
+//            send(aPacket);
+//            inTransit = true;
+//            startTime = getTime();
+//            transmittedNum++;
+//        }else {
+//            System.out.println("A: message - " + message.getData() + "was dropped");
+//        }
     }
-
-
 
     /**
      * This routine will be called whenever a packet sent from the B-side
@@ -162,12 +180,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         Packet newPacket = makePacketForChecksum(packet);
 
         // Check to make sure that the Acknowledgement is for the correct packet
-        if (!corrupt(newPacket) && packet.getAcknum() == aSeqNum) {
-            System.out.println("A: AlternatingBit.Packet" + packet.getAcknum() + " was acknowledged");
-            System.out.println("A: Stopped timer");
-            aSeqNum = computeSeqNum(aSeqNum);
-            inTransit = false;
-            stopTimer(A);
+        if (!corrupt(newPacket)) {
+            base = packet.getAcknum() + 1;
+
+            if(base == nextSeqNum)
+                stopTimer(A);
+            else
+                startTimer(A, TIME);
 
         } else if (corrupt(newPacket)) {
             System.out.println("A: received a corrupted ACK");
@@ -177,6 +196,26 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             ackIgnored = true;
         }
     }
+//        updateRTT();
+//
+//        System.out.println("A: rcv ACK" + packet.getAcknum());
+//        Packet newPacket = makePacketForChecksum(packet);
+//
+//        // Check to make sure that the Acknowledgement is for the correct packet
+//        if (!corrupt(newPacket) && packet.getAcknum() == aSeqNum) {
+//            System.out.println("A: AlternatingBit.Packet" + packet.getAcknum() + " was acknowledged");
+//            System.out.println("A: Stopped timer");
+//            aSeqNum = computeSeqNum(aSeqNum);
+//            inTransit = false;
+//            stopTimer(A);
+//
+//        } else if (corrupt(newPacket)) {
+//            System.out.println("A: received a corrupted ACK");
+//            corruptedPacketNum++;
+//        } else {
+//            System.out.println("A: received wrong ACK");
+//            ackIgnored = true;
+//        }    }
 
     private void updateRTT() {
         totalRTT += getTime() - startTime;
@@ -209,9 +248,13 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * of entity A).
      */
     protected void aInit() {
-        aSeqNum = 0;
-        inTransit = false;
-        ackIgnored = false;
+        nextSeqNum = 1;
+        base = 1;
+        N = 8;
+        sndpkt = new Packet[N];
+//        aSeqNum = 0;
+//        inTransit = false;
+//        ackIgnored = false;
     }
 
     /**

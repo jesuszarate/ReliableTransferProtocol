@@ -1,35 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f6497f1-5431-4b36-862b-06b7587f3f80" name="Default" comment="added  readmequick">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/Event.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/EventList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/EventListImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/Message.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/NetworkSimulator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/Packet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/Project.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/javafiles.tar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/Event.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/EventList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/EventListImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/Message.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/NetworkSimulator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/Packet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/Project.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/ReliableTransferProtocol/StudentNetworkSimulator.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Event.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/Event.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/EventList.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/EventList.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/EventListImpl.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/EventListImpl.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Message.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/Message.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/NetworkSimulator.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/NetworkSimulator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Packet.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/Packet.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Project.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/Project.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/StudentNetworkSimulator.java" afterPath="$PROJECT_DIR$/src/AlternatingBit/StudentNetworkSimulator.java" />
+    <list default="true" id="5f6497f1-5431-4b36-862b-06b7587f3f80" name="Default" comment="Separated the two protocols into two different packages">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.txt" afterPath="$PROJECT_DIR$/readme.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java" afterPath="$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -75,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Project.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Project.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GoBackN/Project.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="-210">
+              <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,12 +101,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StudentNetworkSimulator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StudentNetworkSimulator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="615">
+              <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
+              <folding>
+                <element signature="method#updateRTT#0;class#StudentNetworkSimulator#0" expanded="false" />
+                <element signature="method#aTimerInterrupt#0;class#StudentNetworkSimulator#0" expanded="false" />
+                <element signature="e#13670#13671#0" expanded="true" />
+                <element signature="e#13712#13713#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -140,8 +119,8 @@
       <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GoBackN/Event.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
+            <state relative-caret-position="30">
+              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -169,6 +148,7 @@
       <find>aSeqNum</find>
       <find>dumm</find>
       <find>being co</find>
+      <find>starttimer</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -192,6 +172,7 @@
         <option value="$PROJECT_DIR$/src/AlternatingBit/StudentNetworkSimulator.java" />
         <option value="$PROJECT_DIR$/src/GoBackN/Event.java" />
         <option value="$PROJECT_DIR$/src/GoBackN/Project.java" />
+        <option value="$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java" />
       </list>
     </option>
   </component>
@@ -928,7 +909,7 @@
       <workItem from="1489629947566" duration="23679000" />
       <workItem from="1488885183615" duration="42537000" />
       <workItem from="1490571116680" duration="884000" />
-      <workItem from="1490400928395" duration="33000" />
+      <workItem from="1490400928395" duration="3825000" />
     </task>
     <task id="LOCAL-00001" summary="Added method for sending an ack">
       <created>1488885300140</created>
@@ -1021,11 +1002,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490075418548</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Separated the two protocols into two different packages">
+      <created>1490401028999</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1490401028999</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67133000" />
+    <option name="totallyTimeSpent" value="70925000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -1079,7 +1067,8 @@
     <MESSAGE value="Stats are up" />
     <MESSAGE value="Fixed issue where an exception was thrown if the first packet was lost, the bPacket would be null and therefore it would not have a payload and break." />
     <MESSAGE value="added quick readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="added quick readme" />
+    <MESSAGE value="Separated the two protocols into two different packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Separated the two protocols into two different packages" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1170,7 +1159,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#updateRTT#0;class#StudentNetworkSimulator#0" expanded="false" />
+            <element signature="method#aTimerInterrupt#0;class#StudentNetworkSimulator#0" expanded="false" />
+            <element signature="e#13670#13671#0" expanded="true" />
+            <element signature="e#13712#13713#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1216,8 +1210,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
           <folding>
-            <element signature="e#1894#1895#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1894#1895#0" expanded="false" />
+            <element signature="e#1924#1925#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1256,8 +1250,8 @@
         <state relative-caret-position="1410">
           <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
           <folding>
-            <element signature="e#1894#1895#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1894#1895#0" expanded="false" />
+            <element signature="e#1924#1925#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1322,8 +1316,8 @@
         <state relative-caret-position="0">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding>
-            <element signature="e#1894#1895#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1894#1895#0" expanded="false" />
+            <element signature="e#1924#1925#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1376,7 +1370,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java">
+    <entry file="file://$PROJECT_DIR$/src/GoBackN/Message.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1386,26 +1380,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GoBackN/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="1" lean-forward="false" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GoBackN/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="30">
+          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GoBackN/Project.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-210">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
+          <folding>
+            <element signature="method#updateRTT#0;class#StudentNetworkSimulator#0" expanded="false" />
+            <element signature="method#aTimerInterrupt#0;class#StudentNetworkSimulator#0" expanded="false" />
+            <element signature="e#13670#13671#0" expanded="true" />
+            <element signature="e#13712#13713#0" expanded="true" />
           </folding>
         </state>
       </provider>
