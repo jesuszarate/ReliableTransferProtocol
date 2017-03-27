@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f6497f1-5431-4b36-862b-06b7587f3f80" name="Default" comment="Separated the two protocols into two different packages">
+    <list default="true" id="5f6497f1-5431-4b36-862b-06b7587f3f80" name="Default" comment="Implemented sending">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java" afterPath="$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java" />
     </list>
@@ -104,13 +104,12 @@
       <file leaf-file-name="StudentNetworkSimulator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
+            <state relative-caret-position="37">
+              <caret line="153" column="14" lean-forward="false" selection-start-line="153" selection-start-column="14" selection-end-line="153" selection-end-column="14" />
               <folding>
                 <element signature="method#updateRTT#0;class#StudentNetworkSimulator#0" expanded="false" />
-                <element signature="method#aTimerInterrupt#0;class#StudentNetworkSimulator#0" expanded="false" />
-                <element signature="e#13670#13671#0" expanded="true" />
-                <element signature="e#13712#13713#0" expanded="true" />
+                <element signature="e#13770#13771#0" expanded="true" />
+                <element signature="e#13812#13813#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -909,7 +908,7 @@
       <workItem from="1489629947566" duration="23679000" />
       <workItem from="1488885183615" duration="42537000" />
       <workItem from="1490571116680" duration="884000" />
-      <workItem from="1490400928395" duration="3825000" />
+      <workItem from="1490400928395" duration="5341000" />
     </task>
     <task id="LOCAL-00001" summary="Added method for sending an ack">
       <created>1488885300140</created>
@@ -1009,11 +1008,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490401028999</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implemented sending">
+      <created>1490500283344</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1490500283344</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70925000" />
+    <option name="totallyTimeSpent" value="72441000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="873" extended-state="6" />
@@ -1022,6 +1028,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1045,7 +1052,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290653" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1068,7 +1074,8 @@
     <MESSAGE value="Fixed issue where an exception was thrown if the first packet was lost, the bPacket would be null and therefore it would not have a payload and break." />
     <MESSAGE value="added quick readme" />
     <MESSAGE value="Separated the two protocols into two different packages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Separated the two protocols into two different packages" />
+    <MESSAGE value="Implemented sending" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented sending" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1161,9 +1168,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="method#updateRTT#0;class#StudentNetworkSimulator#0" expanded="false" />
-            <element signature="method#aTimerInterrupt#0;class#StudentNetworkSimulator#0" expanded="false" />
-            <element signature="e#13670#13671#0" expanded="true" />
-            <element signature="e#13712#13713#0" expanded="true" />
+            <element signature="e#13770#13771#0" expanded="true" />
+            <element signature="e#13812#13813#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1398,13 +1404,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GoBackN/StudentNetworkSimulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="185" column="34" lean-forward="true" selection-start-line="185" selection-start-column="34" selection-end-line="185" selection-end-column="34" />
+        <state relative-caret-position="37">
+          <caret line="153" column="14" lean-forward="false" selection-start-line="153" selection-start-column="14" selection-end-line="153" selection-end-column="14" />
           <folding>
             <element signature="method#updateRTT#0;class#StudentNetworkSimulator#0" expanded="false" />
-            <element signature="method#aTimerInterrupt#0;class#StudentNetworkSimulator#0" expanded="false" />
-            <element signature="e#13670#13671#0" expanded="true" />
-            <element signature="e#13712#13713#0" expanded="true" />
+            <element signature="e#13770#13771#0" expanded="true" />
+            <element signature="e#13812#13813#0" expanded="true" />
           </folding>
         </state>
       </provider>

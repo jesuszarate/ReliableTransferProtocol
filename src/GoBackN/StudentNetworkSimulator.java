@@ -229,16 +229,22 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * for how the timer is started and stopped.
      */
     protected void aTimerInterrupt() {
-        // AlternatingBit.Packet loss occured
-        if(!ackIgnored){
-            packetLossNum++;
-            ackIgnored = false;
+
+        startTimer(A, TIME);
+
+        for(int pos = base; base < nextSeqNum; pos++){
+            send(sndpkt[pos]);
         }
 
-        System.out.println("A: Timed out........" + aPacket.getPayload());
-        send(aPacket);
-        startTime = getTime();
-        retransmissionsNum++;
+//        if(!ackIgnored){
+//            packetLossNum++;
+//            ackIgnored = false;
+//        }
+//
+//        System.out.println("A: Timed out........" + aPacket.getPayload());
+//        send(aPacket);
+//        startTime = getTime();
+//        retransmissionsNum++;
     }
 
     /**
