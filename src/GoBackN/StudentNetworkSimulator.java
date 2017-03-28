@@ -87,14 +87,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      *
      */
 
-    private int aSeqNum;
-    private Packet aPacket;
-
-    private int bSeqNum;
     private Packet bPacket;
-
-    private boolean inTransit;
-    private boolean ackIgnored;
 
     private int TIME = 60;
 
@@ -117,6 +110,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * <p>
      * This is the constructor.  Don't touch!
      */
+    @SuppressWarnings("WeakerAccess")
     public StudentNetworkSimulator(int numMessages, double loss, double corrupt, double avgDelay, int trace, long seed) {
         super(numMessages, loss, corrupt, avgDelay, trace, seed);
     }
@@ -141,7 +135,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * the data in such a message is delivered in-order, and correctly, to
      * the receiving upper layer.
      *
-     * @param message
+     * @param message Message
      */
     protected void aOutput(Message message) {
 
@@ -152,38 +146,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
         } else {
             refuse_data(message.getData());
         }
-//        if (!inTransit){
-//            aPacket = makePacket(aSeqNum, A, message.getData());
-//            send(aPacket);
-//            inTransit = true;
-//            startTime = getTime();
-//            transmittedNum++;
-//        }else {
-//            System.out.println("A: message - " + message.getData() + "was dropped");
-//        }
-    }
-
-    private void send() {
-
-        while (nextSeqNum < base + N) {
-
-            if (nextSeqNum >= sndpkt.size()) {
-                System.out.println("A: Buffer empty");
-                break;
-            }
-
-            send(sndpkt.get(nextSeqNum));
-
-            if (base == nextSeqNum) {
-                System.out.println("A: Timer started with next sequence number of: " + nextSeqNum);
-                startTimer(A, TIME);
-            }
-            nextSeqNum++;
-        }
-    }
-
-    protected int getBufferSize() {
-        return base + N + MaxBuffer;
     }
 
     /**
@@ -192,7 +154,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * arrives at the A-side.  "packet" is the (possibly corrupted) packet
      * sent from the B-side.
      *
-     * @param packet
+     * @param packet Packet
      */
     protected void aInput(Packet packet) {
         updateRTT();
@@ -208,11 +170,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
                 System.out.println("A: Packet" + packet.getAcknum() + " was acknowledged");
                 System.out.println("A: Stopped timer");
                 stopTimer(A);
-            } else {
-                //stopTimer(A);
-                //startTimer(A, TIME);
-//                System.out.println("A: Started timer after receiving base not equal to next sequence number");
-//                startTimer(A, TIME);
             }
 
         } else if (isCorrupt(newPacket)) {
@@ -220,33 +177,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             corruptedPacketNum++;
         } else {
             System.out.println("A: received wrong ACK");
-            ackIgnored = true;
         }
-    }
-//        updateRTT();
-//
-//        System.out.println("A: rcv ACK" + packet.getAcknum());
-//        Packet newPacket = makePacketForChecksum(packet);
-//
-//        // Check to make sure that the Acknowledgement is for the correct packet
-//        if (!isCorrupt(newPacket) && packet.getAcknum() == aSeqNum) {
-//            System.out.println("A: AlternatingBit.Packet" + packet.getAcknum() + " was acknowledged");
-//            System.out.println("A: Stopped timer");
-//            aSeqNum = computeSeqNum(aSeqNum);
-//            inTransit = false;
-//            stopTimer(A);
-//
-//        } else if (isCorrupt(newPacket)) {
-//            System.out.println("A: received a corrupted ACK");
-//            corruptedPacketNum++;
-//        } else {
-//            System.out.println("A: received wrong ACK");
-//            ackIgnored = true;
-//        }    }
-
-    private void updateRTT() {
-        totalRTT += getTime() - startTime;
-        RTT++;
     }
 
     /**
@@ -256,7 +187,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * for how the timer is started and stopped.
      */
     protected void aTimerInterrupt() {
-
         startTimer(A, TIME);
 
         packetLossNum++;
@@ -268,15 +198,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             send(sndpkt.get(pos));
             retransmissionsNum++;
         }
-//        if(!ackIgnored){
-//            packetLossNum++;
-//            ackIgnored = false;
-//        }
-//
-//        System.out.println("A: Timed out........" + aPacket.getPayload());
-//        send(aPacket);
-//        startTime = getTime();
-//        retransmissionsNum++;
     }
 
     /**
@@ -299,7 +220,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      * arrives at the B-side.  "packet" is the (possibly corrupted) packet
      * sent from the A-side.
      *
-     * @param packet
+     * @param packet Packet
      */
     protected void bInput(Packet packet) {
         System.out.println("B: rcv pkt" + packet.getSeqnum() + " data: " + packet.getPayload());
@@ -327,7 +248,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
             }
             sendACK(bPacket);
         }
-
         transmittedNum++;
     }
 
@@ -344,6 +264,28 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
 
     /* *******Helper Methods***************/
+
+    /**
+     * Send packets that are in the window
+     */
+    private void send() {
+
+        while (nextSeqNum < base + N) {
+
+            if (nextSeqNum >= sndpkt.size()) {
+                System.out.println("A: Buffer empty");
+                break;
+            }
+
+            send(sndpkt.get(nextSeqNum));
+
+            if (base == nextSeqNum) {
+                System.out.println("A: Timer started with next sequence number of: " + nextSeqNum);
+                startTimer(A, TIME);
+            }
+            nextSeqNum++;
+        }
+    }
 
     /**
      * Send the given packet from A to B
@@ -365,9 +307,8 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      */
     private void sendACK(Packet packet) {
         System.out.println("B: send ACK" + packet.getSeqnum() + "\n");
-        //Expected sequence number, ACK, payload
-        int checksum = computeChecksum(expectedSeqNum, packet.getSeqnum(), packet.getPayload());
-        //toLayer3(B, new Packet(expectedSeqNum, packet.getSeqnum(), checksum, packet.getPayload()));
+        //params passed in             (Expected sequence number, ACK,                payload
+        int checksum = computeChecksum(expectedSeqNum,            packet.getSeqnum(), packet.getPayload());
         toLayer3(B, new Packet(expectedSeqNum, packet.getSeqnum(), checksum, DUMMY_PAYLOAD));
     }
 
@@ -380,6 +321,10 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     private boolean isCorrupt(Packet packet) {
         int checksum = computeChecksum(packet.getSeqnum(), packet.getAcknum(), packet.getPayload());
         return checksum != packet.getChecksum();
+    }
+
+    private int getBufferSize() {
+        return base + N + MaxBuffer;
     }
 
     /**
@@ -427,19 +372,16 @@ public class StudentNetworkSimulator extends NetworkSimulator {
     }
 
     /**
-     * Alternates the sequence number
-     *
-     * @param seqNum Current sequence number
-     * @return Next sequence number
+     * Update the Return Trip Time
      */
-    private int computeSeqNum(int seqNum) {
-        return seqNum == 1 ? 0 : 1;
+    private void updateRTT() {
+        totalRTT += getTime() - startTime;
+        RTT++;
     }
 
     private void refuse_data(String data) {
         System.out.println("A: message - " + data + "was dropped");
     }
-
 
     private void printStats() {
         System.out.println("\nSTATS");
