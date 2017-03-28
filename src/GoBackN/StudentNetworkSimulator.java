@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class StudentNetworkSimulator extends NetworkSimulator {
     private static final String DUMMY_PAYLOAD = "Dummy Payload";
-    /*
+    /**
      * Predefined Constants (static member variables):
      *
      *   int MAXDATASIZE : the maximum size of the AlternatingBit.Message data and
@@ -89,7 +89,8 @@ public class StudentNetworkSimulator extends NetworkSimulator {
 
     private Packet bPacket;
 
-    private int TIME = 60;
+//    private int TIME = 60;
+    private int TIME = 130;
 
     /* ********Stats********* */
     private int transmittedNum = 0;
@@ -171,7 +172,6 @@ public class StudentNetworkSimulator extends NetworkSimulator {
                 System.out.println("A: Stopped timer");
                 stopTimer(A);
             }
-
         } else if (isCorrupt(newPacket)) {
             System.out.println("A: received a corrupted ACK");
             corruptedPacketNum++;
@@ -259,7 +259,7 @@ public class StudentNetworkSimulator extends NetworkSimulator {
      */
     protected void bInit() {
         expectedSeqNum = 0;
-        bPacket = new Packet(0, 0, 0, DUMMY_PAYLOAD);
+        bPacket = new Packet(-1, -1, 0, DUMMY_PAYLOAD);
     }
 
 
