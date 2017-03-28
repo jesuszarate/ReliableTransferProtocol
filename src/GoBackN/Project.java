@@ -39,7 +39,8 @@ public class Project
             
             if (buffer.equals(""))
             {
-                nsim = 10;
+                //nsim = 10;
+                nsim = 20;
             }
             else
             {            
@@ -70,7 +71,8 @@ public class Project
             
             if (buffer.equals(""))
             {
-                loss = 0.0;
+                //loss = 0.0;
+                loss = 0.05;
             }
             else
             {            
@@ -101,6 +103,7 @@ public class Project
             
             if (buffer.equals(""))
             {
+                //corrupt = 0.0;
                 corrupt = 0.0;
             }
             else
@@ -132,7 +135,8 @@ public class Project
             
             if (buffer.equals(""))
             {
-                delay = 1000.0;
+                //delay = 1000.0;
+                delay = 10;
             }
             else
             {            
@@ -162,7 +166,8 @@ public class Project
             
             if (buffer.equals(""))
             {
-                trace = 0;
+                //trace = 0;
+                trace = 2;
             }
             else
             {            
